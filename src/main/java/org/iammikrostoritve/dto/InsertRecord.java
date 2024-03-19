@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import org.iammikrostoritve.InsertRecordProto;
 import org.iammikrostoritve.InsertRecordProto;
 import org.iammikrostoritve.entity.Artist;
+import org.iammikrostoritve.entity.GrpcEntity;
 import org.iammikrostoritve.entity.Label;
 
 import java.util.ArrayList;
@@ -14,7 +15,7 @@ import java.util.ArrayList;
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class InsertRecord {
+public class InsertRecord implements GrpcEntity<InsertRecord, InsertRecordProto> {
     private String title;
     private String artistId;
     private String genre;

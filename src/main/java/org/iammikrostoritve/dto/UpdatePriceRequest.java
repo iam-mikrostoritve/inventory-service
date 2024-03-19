@@ -3,10 +3,11 @@ package org.iammikrostoritve.dto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.iammikrostoritve.UpdatePriceRequestProto;
+import org.iammikrostoritve.entity.GrpcEntity;
 
 @Data
 @AllArgsConstructor
-public class UpdatePriceRequest {
+public class UpdatePriceRequest implements GrpcEntity<UpdatePriceRequest, UpdatePriceRequestProto> {
     private String id;
     private double price;
 
