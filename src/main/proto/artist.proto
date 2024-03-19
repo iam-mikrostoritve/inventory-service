@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "org.iammikrostoritve";
+option java_outer_classname = "ArtistGrpcProto";
+
+import "common.proto";
+
+service ArtistGrpcService {
+  rpc GetAll (Empty) returns (stream ArtistProto) {}
+  rpc GetById (ArtistIdProto) returns (ArtistProto) {}
+  rpc Insert (InsertArtistProto) returns (Empty) {}
+  rpc Delete (ArtistIdProto) returns (Empty) {}
+}
+
+message ArtistProto {
+  string id = 1;
+  string artistName = 2;
+  string country = 3;
+  string realName = 4;
+}
+
+message InsertArtistProto {
+  string artistName = 1;
+  string country = 2;
+  string realName = 3;
+}
+
+message ArtistIdProto {
+  string id = 1;
+}
