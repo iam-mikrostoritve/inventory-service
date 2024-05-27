@@ -13,24 +13,9 @@ import org.iammikrostoritve.LabelProto;
 @AllArgsConstructor
 @NoArgsConstructor
 @MongoEntity(collection = "labels")
-public class Label extends PanacheMongoEntity implements GrpcEntity<Label, LabelProto>, MongoExtender {
+public class Label extends PanacheMongoEntity implements GrpcEntity<Label, LabelProto> {
     private String name;
     private String country;
-
-    @Override
-    public ObjectId getId() {
-        return id;
-    }
-
-    @Override
-    public void setId(String id) {
-        this.id = new ObjectId(id);
-    }
-
-    @Override
-    public void setId(ObjectId id) {
-        this.id = id;
-    }
 
     public Label fromProto(LabelProto labelProto) {
         this.name = labelProto.getName();

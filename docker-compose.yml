@@ -1,0 +1,42 @@
+version: '3.8'
+services:
+
+  mongo:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./data/db:/data/db
+    networks:
+      - iam-network
+
+  iam-inventory-service:
+    image: 758ecb97f6af
+    ports:
+      - "8081:8081"
+      - "9000:9000"
+    environment:
+      - quarkus.mongodb.connection-string=mongodb://mongo:27017/
+      - quarkus.mongodb.database=inventory
+      - quarkus.http.port=8081
+    depends_on:
+      - mongo
+    networks:
+      - iam-network
+
+  gateway-web:
+    image: 01a5f9447a31
+    ports:
+      - "5001:5001"
+    environment:
+      - USER_SERVICE_URL=http://localhost:8080/api/users
+      - INVENTORY_SERVICE_URL=iam-inventory-service:9000
+      - TRANSACTION_SERVICE_URL=http://localhost:8082
+    depends_on:
+      - iam-inventory-service
+    networks:
+      - iam-network
+
+networks:
+  iam-network:
+    driver: bridge

@@ -15,7 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @MongoEntity(collection = "records")
-public class Record extends PanacheMongoEntity implements GrpcEntity<Record, RecordProto>, MongoExtender {
+public class Record extends PanacheMongoEntity implements GrpcEntity<Record, RecordProto> {
     private String title;
     private Artist artist;
     private String genre;
@@ -30,21 +30,6 @@ public class Record extends PanacheMongoEntity implements GrpcEntity<Record, Rec
         this.title = title;
         this.price = price;
         this.quantity = quantity;
-    }
-
-    @Override
-    public ObjectId getId() {
-        return id;
-    }
-
-    @Override
-    public void setId(String id) {
-        this.id = new ObjectId(id);
-    }
-
-    @Override
-    public void setId(ObjectId id) {
-        this.id = id;
     }
 
     @Override

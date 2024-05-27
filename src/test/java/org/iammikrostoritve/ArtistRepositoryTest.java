@@ -25,16 +25,16 @@ public class ArtistRepositoryTest {
 
     @Test
     public void testGetById() throws Exception {
-        String id = new ObjectId().toString();
+        ObjectId id = new ObjectId();
         Artist artist = new Artist();
-        artist.setId(id);
+        artist.id = id;
         artist.setArtistName("Test Artist");
 
-        when(artistRepository.getById(id)).thenReturn(artist);
+        when(artistRepository.getById(id.toString())).thenReturn(artist);
 
-        Artist response = artistRepository.getById(id);
+        Artist response = artistRepository.getById(id.toString());
 
         assertEquals(artist, response);
-        verify(artistRepository).getById(id);
+        verify(artistRepository).getById(id.toString());
     }
 }
